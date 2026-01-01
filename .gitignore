@@ -1,16 +1,33 @@
-# Compiled class file
+# ========================
+# 1. GLOBAL / OS FILES
+# ========================
+.DS_Store
+Thumbs.db
+*.log
+tmp/
+temp/
+
+# ========================
+# 2. IDE FILES (IntelliJ / VS Code / Eclipse)
+# ========================
+# Ignore project config files so you don't force your settings on others
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+*.sts
+
+# ========================
+# 3. BACKEND (Java / Spring Boot / Maven)
+# ========================
+# Ignore build results
+target/
+**/target/
 *.class
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# Package files
 *.jar
 *.war
 *.nar
@@ -19,6 +36,41 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Maven Wrapper (Optional: Keep this if you want to use ./mvnw, otherwise ignore)
+# .mvn/wrapper/maven-wrapper.jar
+
+# ========================
+# 4. FRONTEND (Angular / Node.js)
+# ========================
+# Dependencies (Massive folder, never commit this!)
+node_modules/
+**/node_modules/
+
+# Build Output
+dist/
+**/dist/
+
+# Angular specific
+.angular/
+
+# Yarn / NPM Logs
+yarn-error.log
+npm-debug.log*
+
+# ========================
+# 5. SECURITY & SECRETS (CRITICAL)
+# ========================
+# Never commit passwords or API keys!
+.env
+*.env
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+secrets.yml
+
+# ========================
+# 6. INFRASTRUCTURE / DOCKER
+# ========================
+docker-compose.override.yml
+.localstack/
