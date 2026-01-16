@@ -23,15 +23,27 @@
                 <version>${project.version}</version>
             </dependency>
 
+	    <dependency>
+                <groupId>com.omnipulse</groupId>
+                <artifactId>omnipulse-data-jpa</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+	    <dependency>
+                <groupId>com.omnipulse</groupId>
+                <artifactId>omnipulse-web-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.omnipulse</groupId>
                 <artifactId>omnipulse-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
-            <dependency>
+	    <dependency>
                 <groupId>com.omnipulse</groupId>
-                <artifactId>omnipulse-events</artifactId>
+                <artifactId>omnipulse-observability</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

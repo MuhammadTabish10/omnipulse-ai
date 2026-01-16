@@ -17,8 +17,10 @@
 
     <modules>
         <module>omnipulse-common</module>
+	<module>omnipulse-data-jpa</module>
+	<module>omnipulse-web-core</module>
         <module>omnipulse-security</module>
-        <module>omnipulse-events</module>
+	<module>omnipulse-observability</module>
     </modules>
 
 </project>
