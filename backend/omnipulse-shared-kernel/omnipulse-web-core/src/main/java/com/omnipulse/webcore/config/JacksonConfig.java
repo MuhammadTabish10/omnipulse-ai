@@ -19,7 +19,7 @@ public class JacksonConfig {
 		return JsonMapper.builder()
 				.addModule(new JavaTimeModule())
 				.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-				.disable(SerializationFeature.WRITE_DATE_KEYS_AS_TIMESTAMPS)
+				.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
 				.serializationInclusion(JsonInclude.Include.NON_NULL)
 				.build();
 	}

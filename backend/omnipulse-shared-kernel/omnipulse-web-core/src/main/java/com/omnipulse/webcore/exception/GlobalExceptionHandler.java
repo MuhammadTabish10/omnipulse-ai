@@ -3,6 +3,7 @@ package com.omnipulse.webcore.exception;
 import com.omnipulse.common.dto.response.ApiResponse;
 import com.omnipulse.common.dto.response.ValidationError;
 import com.omnipulse.common.enums.ApiResponseCode;
+import com.omnipulse.common.exception.DuplicateResourceException;
 import com.omnipulse.common.exception.OmniPulseException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @Slf4j
@@ -88,15 +90,22 @@ public class GlobalExceptionHandler {
 				.body(ApiResponse.error("An unexpected internal error occurred", ApiResponseCode.INTERNAL_ERROR.getCode()));
 	}
 
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<ApiResponse<Void>> handleAccessDenied(AccessDeniedException ex) {
+		log.warn("Access Denied: {}", ex.getMessage());
+		return ResponseEntity
+				.status(HttpStatus.FORBIDDEN)
+				.body(ApiResponse.error("Access Denied: You do not have permission to perform this action.", ApiResponseCode.FORBIDDEN.getCode()));
+	}
+
 	private HttpStatus resolveStatus(ApiResponseCode code) {
 		return switch (code) {
 			case SUCCESS -> HttpStatus.OK;
 			case RESOURCE_NOT_FOUND -> HttpStatus.NOT_FOUND;
-			case UNAUTHORIZED -> HttpStatus.UNAUTHORIZED;
+			case FORBIDDEN -> HttpStatus.FORBIDDEN;
 			case VALIDATION_FAILED, BAD_REQUEST -> HttpStatus.BAD_REQUEST;
 			case CONFLICT -> HttpStatus.CONFLICT;
 			case SERVICE_UNAVAILABLE -> HttpStatus.SERVICE_UNAVAILABLE;
-			case INTERNAL_ERROR -> HttpStatus.INTERNAL_SERVER_ERROR;
 			default -> HttpStatus.INTERNAL_SERVER_ERROR;
 		};
 	}
